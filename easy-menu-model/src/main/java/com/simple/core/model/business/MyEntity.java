@@ -4,14 +4,13 @@ import com.simple.core.model.generic.AbstractDomain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
-
+import javax.persistence.Entity;
 /**
  * Created by dzhao on 7/06/2015.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "my_entity")
-public class Entity extends AbstractDomain {
+public class MyEntity extends AbstractDomain {
     @NotNull(message = "entity name cannot be null")
     @Column(length = 50)
     private String name;
@@ -19,11 +18,13 @@ public class Entity extends AbstractDomain {
     private String description;
     @Column
     private String infoJson;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "type_id")
     private EntityType entityType;
 
-    @OneToMany(mappedBy = "entity")
-    private List<AbstractAssociation> associations;
+/*    @OneToMany(mappedBy = "entity")
+    private List<AbstractAssociation> associations;*/
 
     public String getName() {
         return name;
@@ -57,6 +58,7 @@ public class Entity extends AbstractDomain {
         this.entityType = entityType;
     }
 
+/*
     public List<AbstractAssociation> getAssociations() {
         return associations;
     }
@@ -64,4 +66,5 @@ public class Entity extends AbstractDomain {
     public void setAssociations(List<AbstractAssociation> associations) {
         this.associations = associations;
     }
+*/
 }

@@ -4,37 +4,45 @@ import com.simple.core.model.generic.AbstractDomain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
 
 /**
  * Created by dzhao on 7/06/2015.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "my_association")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="code", length=2)
 public abstract class AbstractAssociation extends AbstractDomain {
-    @NotNull(message = "association code cannot be null")
-    private String code;
+/*    @NotNull(message = "association code cannot be null")
+    private String code;*/
     @NotNull(message = "association name cannot be null")
     @Column(length = 50)
-    private String name;
+    protected String name;
     @Column(length = 100)
-    private String description;
+    protected String description;
+
+/*
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="activity_id", nullable=true)
+    private MyActivity activity;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Activity activityFrom;
+    @JoinColumn(name="linked_activity_id", nullable=true)
+    private MyActivity linkedActivity;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Activity activityTo;
+    @JoinColumn(name="entity_id", nullable=true)
+    private MyEntity entity;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Entity entityFrom;
+    @JoinColumn(name="linked_entity_id", nullable=true)
+    private MyEntity linkedEntity;
+*/
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Entity entityTo;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private AssociationType associationType;
+    @JoinColumn(name="type_id")
+    protected AssociationType associationType;
 
     public String getName() {
         return name;
@@ -60,43 +68,43 @@ public abstract class AbstractAssociation extends AbstractDomain {
         this.associationType = associationType;
     }
 
-    public Activity getActivityTo() {
-        return activityTo;
+ /*   public MyActivity getLinkedActivity() {
+        return linkedActivity;
     }
 
-    public void setActivityTo(Activity activityTo) {
-        this.activityTo = activityTo;
+    public void setLinkedActivity(MyActivity linkedActivity) {
+        this.linkedActivity = linkedActivity;
     }
 
-    public Entity getEntityTo() {
-        return entityTo;
+    public MyEntity getLinkedEntity() {
+        return linkedEntity;
     }
 
-    public void setEntityTo(Entity entityTo) {
-        this.entityTo = entityTo;
+    public void setLinkedEntity(MyEntity linkedEntity) {
+        this.linkedEntity = linkedEntity;
     }
 
-    public Activity getActivityFrom() {
-        return activityFrom;
+    public MyActivity getActivity() {
+        return activity;
     }
 
-    public void setActivityFrom(Activity activityFrom) {
-        this.activityFrom = activityFrom;
+    public void setActivity(MyActivity activity) {
+        this.activity = activity;
     }
 
-    public Entity getEntityFrom() {
-        return entityFrom;
+    public MyEntity getEntity() {
+        return entity;
     }
 
-    public void setEntityFrom(Entity entityFrom) {
-        this.entityFrom = entityFrom;
-    }
+    public void setEntity(MyEntity entity) {
+        this.entity = entity;
+    }*/
 
-    public String getCode() {
+/*    public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
-    }
+    }*/
 }

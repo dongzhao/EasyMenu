@@ -2,16 +2,14 @@ package com.simple.core.model.generic;
 
 import com.simple.core.util.IdGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.Version;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * Created by dzhao on 7/06/2015.
  */
+@MappedSuperclass
 public abstract class AbstractDomain implements BaseDomain<String>{
 
     @Id

@@ -5,11 +5,11 @@ import com.simple.core.model.generic.AbstractDomain;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import javax.persistence.Entity;
 /**
  * Created by dzhao on 7/06/2015.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "my_entity_type")
 public class EntityType extends AbstractDomain {
     @NotNull(message = "entity type name cannot be null")

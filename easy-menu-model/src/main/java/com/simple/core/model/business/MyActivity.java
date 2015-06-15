@@ -3,15 +3,16 @@ package com.simple.core.model.business;
 import com.simple.core.model.generic.AbstractDomain;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * Created by dzhao on 7/06/2015.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "my_activity")
-public class Activity extends AbstractDomain {
+public class MyActivity extends AbstractDomain {
 
     @NotNull(message = "activity name cannot be null")
     @Column(length = 50)
@@ -21,10 +22,14 @@ public class Activity extends AbstractDomain {
     @Column
     private String infoJson;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "type_id")
     private ActivityType activityType;
 
+/*    @OneToMany(mappedBy = "activity")
+    private List<ActivityAssociation> activityAssociations;
+
     @OneToMany(mappedBy = "activity")
-    private List<AbstractAssociation> associations;
+    private List<ActivityEntityAssociation> entityAssociations;*/
 
     public String getName() {
         return name;
@@ -58,13 +63,21 @@ public class Activity extends AbstractDomain {
         this.activityType = activityType;
     }
 
-    public List<AbstractAssociation> getAssociations() {
-        return associations;
+/*    public List<ActivityAssociation> getActivityAssociations() {
+        return activityAssociations;
     }
 
-    public void setAssociations(List<AbstractAssociation> associations) {
-        this.associations = associations;
+    public void setActivityAssociations(List<ActivityAssociation> activityAssociations) {
+        this.activityAssociations = activityAssociations;
     }
+
+    public List<ActivityEntityAssociation> getEntityAssociations() {
+        return entityAssociations;
+    }
+
+    public void setEntityAssociations(List<ActivityEntityAssociation> entityAssociations) {
+        this.entityAssociations = entityAssociations;
+    }*/
 }
 
 

@@ -16,13 +16,13 @@ import java.util.Date;
 /**
  * Created by dzhao on 7/06/2015.
  */
-public abstract class PersistenceTest<T extends BaseDomain<ID>, ID extends Serializable> {
+public abstract class AbstractPersistenceTest<T extends BaseDomain<ID>, ID extends Serializable> {
 
     protected Injector injector;
     protected static EntityManagerFactory emf;
     protected Class<T> clazz;
 
-    public PersistenceTest(){
+    public AbstractPersistenceTest(){
         Type[] types = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments();
         if (types[0] instanceof ParameterizedType) {
             // If the class has parameterized types, it takes the raw type.
